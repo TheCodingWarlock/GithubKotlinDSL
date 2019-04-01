@@ -20,6 +20,10 @@ import io.devbits.githubkotlindsl.models.Contributor
 import io.devbits.githubkotlindsl.models.Repo
 import io.devbits.githubkotlindsl.models.RepoOwner
 
+@DslMarker
+annotation class GithubKotlinDsl
+
+@GithubKotlinDsl
 class RepoBuilder {
     var repoName: String = ""
     var description: String = ""
@@ -39,6 +43,7 @@ class RepoBuilder {
     fun build(): Repo = Repo(repoName, description, owner, stars, contributors)
 }
 
+@GithubKotlinDsl
 class RepoOwnerBuilder {
     var name = ""
     var url = ""
@@ -46,6 +51,7 @@ class RepoOwnerBuilder {
     fun build(): RepoOwner = RepoOwner(name, url)
 }
 
+@GithubKotlinDsl
 class ContributorBuilder {
 
     var contributorName = ""
