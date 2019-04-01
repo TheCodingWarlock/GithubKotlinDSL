@@ -40,15 +40,24 @@ class RepoBuilder {
         contributors += contributor
     }
 
+    @Deprecated(message = "Only one Repo is allowed. Nesting of repos is not allowed", level = DeprecationLevel.ERROR)
+    fun repo(builder: () -> Unit) {
+    }
+
     fun build(): Repo = Repo(repoName, description, owner, stars, contributors)
 }
 
 @GithubKotlinDsl
 class RepoOwnerBuilder {
-    var name = ""
-    var url = ""
+    private lateinit var repoOwner: RepoOwner
 
-    fun build(): RepoOwner = RepoOwner(name, url)
+    infix fun String.url(url: String): RepoOwner {
+        val owner = RepoOwner(this, url)
+        repoOwner = RepoOwner(owner.name, owner.url)
+        return owner
+    }
+
+    fun build(): RepoOwner = repoOwner
 }
 
 @GithubKotlinDsl
@@ -58,8 +67,8 @@ class ContributorBuilder {
 
     fun build(): List<Contributor> = contributors
 
-    infix fun String.contributions(contributions: Int) {
-        contributors.add(Contributor(this, contributions))
+    operator fun Contributor.unaryPlus() {
+        contributors += this
     }
 }
 

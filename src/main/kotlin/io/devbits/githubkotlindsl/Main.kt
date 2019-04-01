@@ -16,6 +16,7 @@
 
 package io.devbits.githubkotlindsl
 
+import io.devbits.githubkotlindsl.models.Contributor
 import io.devbits.githubkotlindsl.models.Repo
 
 fun main() {
@@ -25,12 +26,11 @@ fun main() {
         description = "Sample App"
         stars = 4
         owner {
-            name = "Eton Otieno"
-            url = "https://github.com/TheCodingWarlock"
+            "Eton Otieno" url "https://github.com/TheCodingWarlock"
         }
         contributors {
-            "Juma Allan" contributions 4
-            "Seth Omari" contributions 5
+            +Contributor("Juma Allan", 4)
+            +Contributor("Seth Omari", 5)
         }
     }.print()
 }
