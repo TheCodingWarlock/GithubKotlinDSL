@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package io.devbits.githubkotlindsl.simple
+package io.devbits.githubkotlindsl
 
 fun main() {
 
