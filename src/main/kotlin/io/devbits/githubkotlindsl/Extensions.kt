@@ -49,10 +49,16 @@ class RepoBuilder {
 
 @GithubKotlinDsl
 class RepoOwnerBuilder {
-    var name = ""
-    var url = ""
 
-    fun build(): RepoOwner = RepoOwner(name, url)
+    private lateinit var repoOwner: RepoOwner
+
+    infix fun String.url(url: String): RepoOwner {
+        val owner = RepoOwner(this, url)
+        repoOwner = RepoOwner(owner.name, owner.url)
+        return owner
+    }
+
+    fun build(): RepoOwner = repoOwner
 }
 
 @GithubKotlinDsl
