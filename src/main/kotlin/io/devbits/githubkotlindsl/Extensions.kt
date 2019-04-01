@@ -40,6 +40,10 @@ class RepoBuilder {
         contributors += contributor
     }
 
+    @Deprecated(message = "Only one Repo is allowed. Nesting of repos is not allowed", level = DeprecationLevel.ERROR)
+    fun repo(builder: () -> Unit) {
+    }
+
     fun build(): Repo = Repo(repoName, description, owner, stars, contributors)
 }
 
