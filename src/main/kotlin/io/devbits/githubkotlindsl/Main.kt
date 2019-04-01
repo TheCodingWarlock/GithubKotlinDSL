@@ -28,13 +28,9 @@ fun main() {
             name = "Eton Otieno"
             url = "https://github.com/TheCodingWarlock"
         }
-        contributor {
-            contributorName = "Juma Allan"
-            contributions = 4
-        }
-        contributor {
-            contributorName = "Seth Omari"
-            contributions = 5
+        contributors {
+            "Juma Allan" contributions 4
+            "Seth Omari" contributions 5
         }
     }.print()
 }

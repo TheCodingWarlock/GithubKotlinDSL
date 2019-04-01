@@ -35,7 +35,7 @@ class RepoBuilder {
         owner = RepoOwnerBuilder().apply(block).build()
     }
 
-    fun contributor(builder: ContributorBuilder.() -> Unit) {
+    fun contributors(builder: ContributorBuilder.() -> Unit) {
         val contributor = ContributorBuilder().apply(builder).build()
         contributors += contributor
     }
@@ -54,10 +54,13 @@ class RepoOwnerBuilder {
 @GithubKotlinDsl
 class ContributorBuilder {
 
-    var contributorName = ""
-    var contributions = 0
+    private val contributors = mutableListOf<Contributor>()
 
-    fun build(): Contributor = Contributor(contributorName, contributions)
+    fun build(): List<Contributor> = contributors
+
+    infix fun String.contributions(contributions: Int) {
+        contributors.add(Contributor(this, contributions))
+    }
 }
 
 fun repo(builder: RepoBuilder.() -> Unit): Repo = RepoBuilder().apply(builder).build()
