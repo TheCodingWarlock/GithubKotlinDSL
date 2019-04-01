@@ -41,6 +41,7 @@ class RepoBuilder {
     }
 
     @Deprecated(message = "Only one Repo is allowed. Nesting of repos is not allowed", level = DeprecationLevel.ERROR)
+    @Suppress("UNUSED_PARAMETER")
     fun repo(builder: () -> Unit) {
     }
 
@@ -52,11 +53,7 @@ class RepoOwnerBuilder {
 
     private lateinit var repoOwner: RepoOwner
 
-    infix fun String.url(url: String): RepoOwner {
-        val owner = RepoOwner(this, url)
-        repoOwner = RepoOwner(owner.name, owner.url)
-        return owner
-    }
+    infix fun String.url(url: String) = RepoOwner(this, url).also { repoOwner = RepoOwner(it.name, it.url) }
 
     fun build(): RepoOwner = repoOwner
 }
