@@ -16,13 +16,14 @@
 
 package io.devbits.githubkotlindsl
 
+import io.devbits.githubkotlindsl.models.Repo
+
 fun main() {
 
-    val repo = repo {
+    repo {
         repoName = "News-Feed"
         description = "Sample App"
         stars = 4
-        //TODO: Figure out how to allow only one owner block per repo
         owner {
             name = "Eton Otieno"
             url = "https://github.com/TheCodingWarlock"
@@ -35,7 +36,7 @@ fun main() {
             contributorName = "Seth Omari"
             contributions = 5
         }
-    }
-
-    println(repo)
+    }.print()
 }
+
+private fun Repo.print() = print(this)
