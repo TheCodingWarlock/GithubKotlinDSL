@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package io.devbits.githubkotlindsl.simple
+package io.devbits.githubkotlindsl
 
 fun main() {
 
@@ -22,6 +22,7 @@ fun main() {
         repoName = "News-Feed"
         description = "Sample App"
         stars = 4
+        //TODO: Figure out how to allow only one owner block per repo
         owner {
             name = "Eton Otieno"
             url = "https://github.com/TheCodingWarlock"

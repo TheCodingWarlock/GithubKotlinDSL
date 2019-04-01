@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package io.devbits.githubkotlindsl.simple
+package io.devbits.githubkotlindsl
 
 import io.devbits.githubkotlindsl.models.Contributor
 import io.devbits.githubkotlindsl.models.Repo
@@ -37,7 +37,7 @@ class RepoBuilder {
 
     fun contributor(builder: ContributorBuilder.() -> Unit) {
         val contributor = ContributorBuilder().apply(builder).build()
-        this.contributors.plusAssign(contributor)
+        contributors += contributor
     }
 
     fun build(): Repo = Repo(repoName, description, owner, stars, contributors)
